@@ -7,3 +7,5 @@ environment_variables:
   APP_ID: "1:728004942610:web:a2cbb9144f7ad186de31cb"
   MEASUREMENT_ID: "G-ME6L9YP6FF"
 
+runtime: nodejs16
+entrypoint: index.js
