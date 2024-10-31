@@ -1,0 +1,13 @@
+{
+  "name": "food-transparency",
+  "version": "1.0.0",
+  "description": "Firebase hosting for Food Transparency project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "firebase": "^9.0.0"
+  }
+}
+
