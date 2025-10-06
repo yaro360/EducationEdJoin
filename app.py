@@ -67,8 +67,11 @@ def save_application(application_data):
 
 @app.route('/')
 def index():
-    """Main dashboard page"""
+    """Main dashboard page - Updated for deployment"""
     jobs = load_jobs()
+    
+    # Debug: Print job count
+    print(f"DEBUG: Loading {len(jobs)} jobs for main route")
     
     # Group jobs by role
     jobs_by_role = {}
@@ -82,8 +85,21 @@ def index():
 
 @app.route('/educationedjoin2')
 def educationedjoin2():
-    """Alternative route for education jobs - redirects to main"""
-    return redirect(url_for('index'))
+    """Alternative route for education jobs - shows same data as main"""
+    jobs = load_jobs()
+    
+    # Debug: Print job count
+    print(f"DEBUG: Loading {len(jobs)} jobs for educationedjoin2 route")
+    
+    # Group jobs by role
+    jobs_by_role = {}
+    for job in jobs:
+        role = job.get('role', 'Other')
+        if role not in jobs_by_role:
+            jobs_by_role[role] = []
+        jobs_by_role[role].append(job)
+    
+    return render_template('index.html', jobs=jobs, jobs_by_role=jobs_by_role)
 
 @app.route('/api/jobs')
 def api_jobs():
