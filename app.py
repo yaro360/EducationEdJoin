@@ -80,6 +80,11 @@ def index():
     
     return render_template('index.html', jobs=jobs, jobs_by_role=jobs_by_role)
 
+@app.route('/educationedjoin2')
+def educationedjoin2():
+    """Alternative route for education jobs - redirects to main"""
+    return redirect(url_for('index'))
+
 @app.route('/api/jobs')
 def api_jobs():
     """API endpoint for jobs data"""
@@ -97,7 +102,7 @@ def api_jobs_by_role(role):
 def job_detail(job_index):
     """Job detail page"""
     jobs = load_jobs()
-    if 0 <= job_index < len(jobs):
+    if job_index >= 0 and job_index < len(jobs):
         job = jobs[job_index]
         return render_template('job_detail.html', job=job, job_index=job_index)
     else:
@@ -108,7 +113,7 @@ def job_detail(job_index):
 def apply_job(job_index):
     """Job application page"""
     jobs = load_jobs()
-    if 0 <= job_index >= len(jobs):
+    if job_index < 0 or job_index >= len(jobs):
         flash('Job not found', 'error')
         return redirect(url_for('index'))
     
