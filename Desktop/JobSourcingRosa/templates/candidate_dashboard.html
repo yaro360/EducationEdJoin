@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}My Dashboard - {{ candidate.name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-user me-2"></i>My Profile</h5>
+            </div>
+            <div class="card-body">
+                <h6>{{ candidate.name }}</h6>
+                <p class="text-muted mb-1">{{ candidate.email }}</p>
+                {% if candidate.phone %}
+                <p class="text-muted mb-1">{{ candidate.phone }}</p>
+                {% endif %}
+                <hr>
+                <p><strong>Experience:</strong> {{ candidate.years_experience }} years</p>
+                <p><strong>Education:</strong> {{ candidate.education_level or 'Not specified' }}</p>
+                <p><strong>Preferred Roles:</strong></p>
+                <ul class="list-unstyled">
+                    {% for role in candidate.preferred_roles %}
+                    <li><span class="badge bg-primary me-1">{{ role }}</span></li>
+                    {% endfor %}
+                </ul>
+                {% if candidate.preferred_locations %}
+                <p><strong>Preferred Locations:</strong></p>
+                <ul class="list-unstyled">
+                    {% for location in candidate.preferred_locations %}
+                    <li><i class="fas fa-map-marker-alt me-1"></i>{{ location }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-briefcase me-2"></i>Recommended Positions</h5>
+                <span class="badge bg-success">{{ matches|length }} matches found</span>
+            </div>
+            <div class="card-body">
+                {% if matches %}
+                    {% for match in matches %}
+                    <div class="job-card card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h6 class="card-title mb-2">
+                                        <span class="badge bg-primary me-2">{{ match.job_role }}</span>
+                                        {{ match.job_title }}
+                                    </h6>
+                                    <p class="card-text text-muted mb-1">
+                                        <i class="fas fa-map-marker-alt me-1"></i>{{ match.job_location }}
+                                    </p>
+                                    <div class="d-flex align-items-center">
+                                        <span class="badge bg-success me-2">Match Score: {{ match.match_score }}%</span>
+                                        <small class="text-muted">Matched recently</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <a href="{{ match.job_url }}" target="_blank" class="btn btn-outline-primary btn-sm me-2">
+                                        <i class="fas fa-external-link-alt me-1"></i>View Job
+                                    </a>
+                                    <a href="{{ match.job_url }}" target="_blank" class="btn btn-success btn-sm">
+                                        <i class="fas fa-paper-plane me-1"></i>Apply Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">No matches found yet</h5>
+                        <p class="text-muted">We're constantly updating our job database. Check back soon for new opportunities!</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Why These Matches?</h5>
+            </div>
+            <div class="card-body">
+                <p>Our AI-powered matching system considers:</p>
+                <ul>
+                    <li><strong>Role Preference:</strong> How well the position matches your preferred roles</li>
+                    <li><strong>Location:</strong> Geographic alignment with your preferred locations</li>
+                    <li><strong>Experience Level:</strong> Whether your experience matches the position requirements</li>
+                    <li><strong>Education:</strong> Educational background compatibility</li>
+                    <li><strong>Skills:</strong> Keyword matching between your skills and job requirements</li>
+                </ul>
+                <p class="mb-0">The higher the match score, the better the fit for your profile!</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

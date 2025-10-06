@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education Jobs Widget Preview</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .widget-container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .job-item {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+        .job-item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+        .job-title {
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 5px;
+        }
+        .job-role {
+            background: #007bff;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+        .job-meta {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .job-actions {
+            margin-top: 10px;
+        }
+        .btn-sm {
+            padding: 4px 12px;
+            font-size: 0.8em;
+        }
+        .widget-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 0;
+        }
+        .filter-buttons {
+            background: white;
+            padding: 10px 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .filter-btn {
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">🎓 Education Jobs Sourcing Tool - Preview</h1>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Main Dashboard Preview</h3>
+                <p>This is what the main dashboard looks like with sample data:</p>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">📊 Dashboard Features</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>✅ <strong>Live Job Listings</strong> - Scraped from EdJoin.org</li>
+                            <li>✅ <strong>Role Filtering</strong> - Filter by Director, Assistant Director, Dean, Principal</li>
+                            <li>✅ <strong>Apply Now</strong> - Direct application with resume upload</li>
+                            <li>✅ <strong>Admin Panel</strong> - View and manage applications</li>
+                            <li>✅ <strong>Google Sheets</strong> - Automatic data sync</li>
+                            <li>✅ <strong>Responsive Design</strong> - Works on all devices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <h3>Sample Data</h3>
+                <div class="card">
+                    <div class="card-body">
+                        <h6>Current Positions:</h6>
+                        <ul class="list-unstyled">
+                            <li>🎯 <strong>Director</strong> - Student Services</li>
+                            <li>🎯 <strong>Assistant Director</strong> - Curriculum</li>
+                            <li>🎯 <strong>Dean</strong> - Students</li>
+                            <li>🎯 <strong>Principal</strong> - Elementary School</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <h3>Embeddable Widget Preview</h3>
+        <p>This widget can be embedded on any website using an iframe:</p>
+        
+        <div class="widget-container">
+            <div class="widget-header">
+                <h5 class="mb-0"><i class="fas fa-graduation-cap me-2"></i>Education Leadership Positions</h5>
+                <small>Live positions from EdJoin.org</small>
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="btn btn-primary btn-sm filter-btn active" data-role="all">All</button>
+                <button class="btn btn-outline-primary btn-sm filter-btn" data-role="director">Director</button>
+                <button class="btn btn-outline-primary btn-sm filter-btn" data-role="assistant director">Assistant Director</button>
+                <button class="btn btn-outline-primary btn-sm filter-btn" data-role="dean">Dean</button>
+                <button class="btn btn-outline-primary btn-sm filter-btn" data-role="principal">Principal</button>
+            </div>
+            
+            <div id="jobs-list" style="background: white; border-radius: 0 0 8px 8px; padding: 15px;">
+                <div class="job-item" data-role="director">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <div class="job-title">Director of Student Services</div>
+                            <span class="job-role">Director</span>
+                            <div class="job-meta">
+                                <i class="fas fa-map-marker-alt me-1"></i>Los Angeles, CA • 
+                                <i class="fas fa-building me-1"></i>Los Angeles Unified School District • 
+                                <i class="fas fa-calendar me-1"></i>2024-01-15
+                            </div>
+                        </div>
+                        <div class="job-actions">
+                            <a href="#" class="btn btn-primary btn-sm">
+                                <i class="fas fa-external-link-alt me-1"></i>View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="job-item" data-role="assistant director">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <div class="job-title">Assistant Director of Curriculum</div>
+                            <span class="job-role">Assistant Director</span>
+                            <div class="job-meta">
+                                <i class="fas fa-map-marker-alt me-1"></i>San Francisco, CA • 
+                                <i class="fas fa-building me-1"></i>San Francisco Unified School District • 
+                                <i class="fas fa-calendar me-1"></i>2024-01-14
+                            </div>
+                        </div>
+                        <div class="job-actions">
+                            <a href="#" class="btn btn-primary btn-sm">
+                                <i class="fas fa-external-link-alt me-1"></i>View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="job-item" data-role="dean">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <div class="job-title">Dean of Students</div>
+                            <span class="job-role">Dean</span>
+                            <div class="job-meta">
+                                <i class="fas fa-map-marker-alt me-1"></i>San Diego, CA • 
+                                <i class="fas fa-building me-1"></i>San Diego Unified School District • 
+                                <i class="fas fa-calendar me-1"></i>2024-01-13
+                            </div>
+                        </div>
+                        <div class="job-actions">
+                            <a href="#" class="btn btn-primary btn-sm">
+                                <i class="fas fa-external-link-alt me-1"></i>View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="job-item" data-role="principal">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <div class="job-title">Elementary School Principal</div>
+                            <span class="job-role">Principal</span>
+                            <div class="job-meta">
+                                <i class="fas fa-map-marker-alt me-1"></i>Oakland, CA • 
+                                <i class="fas fa-building me-1"></i>Oakland Unified School District • 
+                                <i class="fas fa-calendar me-1"></i>2024-01-12
+                            </div>
+                        </div>
+                        <div class="job-actions">
+                            <a href="#" class="btn btn-primary btn-sm">
+                                <i class="fas fa-external-link-alt me-1"></i>View
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <div class="row">
+            <div class="col-md-6">
+                <h4>🚀 How to Use</h4>
+                <ol>
+                    <li><strong>Start the app:</strong> <code>python3 run.py</code></li>
+                    <li><strong>Visit dashboard:</strong> <code>http://localhost:5000</code></li>
+                    <li><strong>Run scraper:</strong> <code>python3 edjoin_scraper.py</code></li>
+                    <li><strong>Embed widget:</strong> Use iframe on any website</li>
+                </ol>
+            </div>
+            
+            <div class="col-md-6">
+                <h4>📁 Files Created</h4>
+                <ul>
+                    <li><code>app.py</code> - Main web application</li>
+                    <li><code>edjoin_scraper.py</code> - Job scraper</li>
+                    <li><code>templates/</code> - HTML pages</li>
+                    <li><code>run.py</code> - Easy startup</li>
+                    <li><code>README.md</code> - Full documentation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="alert alert-success mt-4">
+            <h5>✅ Ready to Use!</h5>
+            <p class="mb-0">Your Education Jobs Sourcing Tool is complete and ready to deploy. The Flask app should be running at <strong>http://localhost:5000</strong> - open it in your browser to see the full dashboard!</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const jobItems = document.querySelectorAll('.job-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const role = this.getAttribute('data-role');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.classList.add('btn-outline-primary');
+                        btn.classList.remove('btn-primary');
+                    });
+                    this.classList.add('active');
+                    this.classList.remove('btn-outline-primary');
+                    this.classList.add('btn-primary');
+                    
+                    // Filter jobs
+                    jobItems.forEach(item => {
+                        if (role === 'all' || item.getAttribute('data-role') === role) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

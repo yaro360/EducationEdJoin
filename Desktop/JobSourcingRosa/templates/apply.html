@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Apply for {{ job.title }} - Education Jobs Hub{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0"><i class="fas fa-paper-plane me-2"></i>Apply for Position</h4>
+            </div>
+            <div class="card-body">
+                <!-- Job Information -->
+                <div class="alert alert-info">
+                    <h6 class="alert-heading">Position Details</h6>
+                    <p class="mb-1"><strong>Title:</strong> {{ job.title }}</p>
+                    <p class="mb-1"><strong>Role:</strong> {{ job.role }}</p>
+                    {% if job.location %}
+                    <p class="mb-1"><strong>Location:</strong> {{ job.location }}</p>
+                    {% endif %}
+                    {% if job.district %}
+                    <p class="mb-0"><strong>District:</strong> {{ job.district }}</p>
+                    {% endif %}
+                </div>
+
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="resume" class="form-label">Resume/CV</label>
+                                <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx">
+                                <div class="form-text">Accepted formats: PDF, DOC, DOCX (Max 10MB)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cover_letter" class="form-label">Cover Letter</label>
+                        <textarea class="form-control" id="cover_letter" name="cover_letter" rows="6" 
+                                  placeholder="Tell us why you're interested in this position and what makes you a great fit..."></textarea>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-paper-plane me-1"></i>Submit Application
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Candidate Registration - Education Jobs Hub{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0"><i class="fas fa-user-plus me-2"></i>Join Our Talent Pool</h4>
+                <p class="mb-0 text-muted">Get matched with the perfect education leadership position</p>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="years_experience" class="form-label">Years of Experience</label>
+                                <select class="form-select" id="years_experience" name="years_experience">
+                                    <option value="0">0-1 years</option>
+                                    <option value="2">2-3 years</option>
+                                    <option value="4">4-5 years</option>
+                                    <option value="6">6-8 years</option>
+                                    <option value="9">9-12 years</option>
+                                    <option value="13">13+ years</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="education_level" class="form-label">Education Level</label>
+                        <select class="form-select" id="education_level" name="education_level">
+                            <option value="">Select Education Level</option>
+                            <option value="Bachelor's Degree">Bachelor's Degree</option>
+                            <option value="Master's Degree">Master's Degree</option>
+                            <option value="Master of Education">Master of Education</option>
+                            <option value="PhD/Doctorate">PhD/Doctorate</option>
+                            <option value="EdD">EdD (Doctor of Education)</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Preferred Roles *</label>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Director" id="role_director" name="preferred_roles">
+                                    <label class="form-check-label" for="role_director">Director</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Assistant Director" id="role_assistant" name="preferred_roles">
+                                    <label class="form-check-label" for="role_assistant">Assistant Director</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Dean" id="role_dean" name="preferred_roles">
+                                    <label class="form-check-label" for="role_dean">Dean</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Principal" id="role_principal" name="preferred_roles">
+                                    <label class="form-check-label" for="role_principal">Principal</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="preferred_locations" class="form-label">Preferred Locations</label>
+                        <input type="text" class="form-control" id="preferred_locations" name="preferred_locations" 
+                               placeholder="e.g., Los Angeles, San Francisco, New York">
+                        <div class="form-text">Separate multiple locations with commas</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="skills" class="form-label">Key Skills</label>
+                        <input type="text" class="form-control" id="skills" name="skills" 
+                               placeholder="e.g., curriculum development, leadership, student services, budget management">
+                        <div class="form-text">Separate multiple skills with commas</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="resume" class="form-label">Resume/CV</label>
+                        <input type="file" class="form-control" id="resume" name="resume" accept=".pdf,.doc,.docx">
+                        <div class="form-text">Accepted formats: PDF, DOC, DOCX (Max 10MB)</div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h6 class="alert-heading"><i class="fas fa-info-circle me-1"></i>How It Works</h6>
+                        <ul class="mb-0">
+                            <li>We'll analyze your profile and match you with suitable positions</li>
+                            <li>You'll receive personalized job recommendations</li>
+                            <li>Employers can find you based on your qualifications</li>
+                            <li>You can apply directly through our platform</li>
+                        </ul>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-user-plus me-1"></i>Join Talent Pool
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
