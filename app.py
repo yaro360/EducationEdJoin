@@ -122,6 +122,21 @@ def api_jobs():
     jobs = load_jobs()
     return jsonify(jobs)
 
+@app.route('/debug')
+def debug():
+    """Debug endpoint to check data loading"""
+    import os
+    
+    debug_info = {
+        "jobs_count": len(load_jobs()),
+        "current_directory": os.getcwd(),
+        "files_in_dir": os.listdir('.'),
+        "jobs_file_exists": os.path.exists(JOBS_FILE),
+        "jobs_file_size": os.path.getsize(JOBS_FILE) if os.path.exists(JOBS_FILE) else 0
+    }
+    
+    return jsonify(debug_info)
+
 @app.route('/api/jobs/<role>')
 def api_jobs_by_role(role):
     """API endpoint for jobs filtered by role"""
