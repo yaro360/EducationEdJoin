@@ -35,15 +35,30 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def load_jobs():
-    """Load jobs from JSON file"""
-    try:
-        with open(JOBS_FILE, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return []
-    except Exception as e:
-        print(f"Error loading jobs: {e}")
-        return []
+    """Load jobs from JSON file with multiple fallback paths"""
+    possible_paths = [
+        JOBS_FILE,
+        f"./{JOBS_FILE}",
+        f"/app/{JOBS_FILE}",
+        f"/app/app/{JOBS_FILE}"
+    ]
+    
+    for file_path in possible_paths:
+        try:
+            print(f"DEBUG: Trying to load jobs from {file_path}")
+            with open(file_path, 'r', encoding='utf-8') as f:
+                jobs = json.load(f)
+                print(f"DEBUG: Successfully loaded {len(jobs)} jobs from {file_path}")
+                return jobs
+        except FileNotFoundError:
+            print(f"DEBUG: File not found: {file_path}")
+            continue
+        except Exception as e:
+            print(f"DEBUG: Error loading from {file_path}: {e}")
+            continue
+    
+    print("DEBUG: No jobs file found in any location")
+    return []
 
 def save_application(application_data):
     """Save job application to file"""
