@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+</head>
+<br><br>
+<a href="index.html">Home</a>
+
+<body>
+    <h1>Add a Product</h1>
+    <form id="product-form">
+        <input type="text" id="product-name" placeholder="Product Name" required>
+        <textarea id="product-description" placeholder="Product Description" required></textarea>
+        <button type="submit">Add Product</button>
+    </form>
+    <button id="logout-button">Logout</button>
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <script src="product.js"></script>
+</body>
+
+<button id="logout-button">Log Out</button>
+
+
+</html>
+

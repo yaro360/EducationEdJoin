@@ -1,0 +1,11 @@
+environment_variables:
+  API_KEY: "AIzaSyDusm8ZxlvF3y2iopCuRJWsg9ePnQd-wco"
+  AUTH_DOMAIN: "food-transparency.firebaseapp.com"
+  PROJECT_ID: "food-transparency"
+  STORAGE_BUCKET: "food-transparency.firebasestorage.app"
+  MESSAGING_SENDER_ID: "728004942610"
+  APP_ID: "1:728004942610:web:a2cbb9144f7ad186de31cb"
+  MEASUREMENT_ID: "G-ME6L9YP6FF"
+
+runtime: nodejs16
+entrypoint: index.js

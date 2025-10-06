@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Information</title>
+</head>
+<body>
+    <h1>Enter Product Information</h1>
+    <form id="product-form">
+        <label for="product-name">Product Name:</label>
+        <input type="text" id="product-name" required><br><br>
+
+        <label for="type">Product Type:</label>
+        <input type="text" id="type" required><br><br>
+
+        <label for="shelf-life">Shelf Life:</label>
+        <input type="text" id="shelf-life" required><br><br>
+
+        <label for="origin">Origin (Where was it created):</label>
+        <input type="text" id="origin" required><br><br>
+
+        <label for="transportation-method">Transportation Method:</label>
+        <input type="text" id="transportation-method"><br><br>
+
+        <label for="product-image">Product Image:</label>
+        <input type="file" id="product-image" accept="image/*"><br><br>
+
+        <button type="submit">Save Product Information</button>
+    </form>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Initialize Firebase (if not done in script.js)
+        const firebaseConfig = {
+          apiKey: "AIzaSyDusm8ZxlvF3y2iopCuRJWsg9ePnQd-wco",
+          authDomain: "food-transparency.firebaseapp.com",
+          projectId: "food-transparency",
+          storageBucket: "food-transparency.firebasestorage.app",
+          messagingSenderId: "728004942610",
+          appId: "1:728004942610:web:a2cbb9144f7ad186de31cb",
+          measurementId: "G-ME6L9YP6FF"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
+        document.getElementById('product-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const userId = firebase.auth().currentUser.uid; // Get current user's ID
+            const productData = {
+                productName: document.getElementById("product-name").value,
+                type: document.getElementById("type").value,
+                shelfLife: document.getElementById("shelf-life").value,
+                origin: document.getElementById("origin").value,
+                transportationMethod: document.getElementById("transportation-method").value,
+                companyId: userId, // Link product to the user's company
+            };
+
+            // Handle product image upload
+            const productImageFile = document.getElementById("product-image").files[0];
+            if (productImageFile) {
+                const storageRef = storage.ref(`products/${userId}/${productImageFile.name}`);
+                const snapshot = await storageRef.put(productImageFile);
+                productData.imageUrl = await snapshot.ref.getDownloadURL();
+            }
+
+            // Save product data to Firestore
+            await db.collection('products').add(productData);
+
+            alert("Product information saved successfully!");
+            // Optionally, redirect to dashboard or another page
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>
+
