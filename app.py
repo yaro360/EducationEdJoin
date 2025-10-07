@@ -82,21 +82,9 @@ def save_application(application_data):
 
 @app.route('/')
 def index():
-    """Main dashboard page - Updated for deployment"""
-    jobs = load_jobs()
-    
-    # Debug: Print job count
-    print(f"DEBUG: Loading {len(jobs)} jobs for main route")
-    
-    # Group jobs by role
-    jobs_by_role = {}
-    for job in jobs:
-        role = job.get('role', 'Other')
-        if role not in jobs_by_role:
-            jobs_by_role[role] = []
-        jobs_by_role[role].append(job)
-    
-    return render_template('index.html', jobs=jobs, jobs_by_role=jobs_by_role)
+    """Main dashboard page - Redirect to working route temporarily"""
+    # Temporary redirect to working route until main route is fixed
+    return redirect(url_for('educationedjoin2'))
 
 @app.route('/educationedjoin2')
 def educationedjoin2():
@@ -148,22 +136,29 @@ def api_jobs_by_role(role):
 def job_detail(job_index):
     """Job detail page"""
     jobs = load_jobs()
+    print(f"DEBUG: Job detail - job_index={job_index}, total_jobs={len(jobs)}")
+    
     if job_index >= 0 and job_index < len(jobs):
         job = jobs[job_index]
         return render_template('job_detail.html', job=job, job_index=job_index)
     else:
+        print(f"DEBUG: Invalid job_index {job_index} for {len(jobs)} jobs")
         flash('Job not found', 'error')
-        return redirect(url_for('index'))
+        return redirect(url_for('educationedjoin2'))  # Redirect to working route
 
 @app.route('/apply/<int:job_index>', methods=['GET', 'POST'])
 def apply_job(job_index):
     """Job application page"""
     jobs = load_jobs()
+    print(f"DEBUG: Apply job - job_index={job_index}, total_jobs={len(jobs)}")
+    
     if job_index < 0 or job_index >= len(jobs):
+        print(f"DEBUG: Invalid job_index {job_index} for {len(jobs)} jobs")
         flash('Job not found', 'error')
-        return redirect(url_for('index'))
+        return redirect(url_for('educationedjoin2'))  # Redirect to working route
     
     job = jobs[job_index]
+    print(f"DEBUG: Found job: {job.get('title', 'No title')}")
     
     if request.method == 'POST':
         # Handle form submission
