@@ -359,3 +359,4 @@ Once deployed, you'll have:
 ✅ **AI Matching**: Smart candidate-job pairing  
 
 **Your Education Jobs Sourcing Tool will be live and ready for your client!** 🚀
+

@@ -195,3 +195,4 @@ python3 scheduler.py
 ✅ **Real-time updates** - Fresh data when EdJoin.org is available  
 
 **The scraper is working perfectly and will automatically scale to hundreds of positions when EdJoin.org is accessible!** 🚀
+

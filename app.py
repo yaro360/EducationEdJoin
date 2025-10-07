@@ -3,7 +3,7 @@ Flask Web Application for Job Sourcing Dashboard
 Displays scraped EdJoin positions and allows resume uploads
 """
 
-from flask import Flask, render_template, request, jsonify, redirect, url_for, flash
+from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, session
 import json
 import os
 from datetime import datetime
@@ -11,6 +11,7 @@ import uuid
 from candidate_matching import CandidateMatcher
 from google_forms_integration import GoogleFormsSubmitter
 from resume_handling import GoogleFormsWithResume, create_resume_upload_route
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-change-this'
@@ -19,6 +20,9 @@ app.secret_key = 'your-secret-key-change-this'
 JOBS_FILE = "edjoin_jobs.json"
 UPLOAD_FOLDER = "uploads"
 ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx'}
+
+# Admin Authentication
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'admin123')  # Change this password!
 
 # Ensure upload directory exists
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -33,6 +37,16 @@ app = create_resume_upload_route(app)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def admin_required(f):
+    """Decorator to require admin authentication"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not session.get('admin_logged_in'):
+            flash('Please log in to access the admin panel.', 'error')
+            return redirect(url_for('admin_login'))
+        return f(*args, **kwargs)
+    return decorated_function
 
 def load_jobs():
     """Load jobs from JSON file with multiple fallback paths"""
@@ -323,7 +337,29 @@ def api_job_candidates(job_url):
     candidates = candidate_matcher.get_top_candidates_for_job(job_url)
     return jsonify(candidates)
 
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    """Admin login page"""
+    if request.method == 'POST':
+        password = request.form.get('password', '').strip()
+        if password == ADMIN_PASSWORD:
+            session['admin_logged_in'] = True
+            flash('Successfully logged in!', 'success')
+            return redirect(url_for('admin_applications'))
+        else:
+            flash('Invalid password. Please try again.', 'error')
+    
+    return render_template('admin_login.html')
+
+@app.route('/admin/logout')
+def admin_logout():
+    """Admin logout"""
+    session.pop('admin_logged_in', None)
+    flash('You have been logged out.', 'info')
+    return redirect(url_for('index'))
+
 @app.route('/admin/applications')
+@admin_required
 def admin_applications():
     """Admin page to view applications"""
     applications_file = "applications.json"
@@ -339,6 +375,7 @@ def admin_applications():
     return render_template('admin_applications.html', applications=applications)
 
 @app.route('/admin/candidates')
+@admin_required
 def admin_candidates():
     """Admin page to view all candidates and matches"""
     candidates = candidate_matcher.load_candidates()
@@ -346,6 +383,7 @@ def admin_candidates():
     return render_template('admin_candidates.html', candidates=candidates, matches=matches)
 
 @app.route('/admin/refresh-jobs', methods=['POST'])
+@admin_required
 def refresh_jobs():
     """Manually refresh job positions"""
     try:

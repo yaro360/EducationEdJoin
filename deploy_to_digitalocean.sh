@@ -270,3 +270,4 @@ chmod +x /var/www/education-jobs/monitor.sh
 
 print_success "Monitoring script created at /var/www/education-jobs/monitor.sh"
 print_success "Run './monitor.sh' to check system status"
+

@@ -30,3 +30,4 @@ ENV PORT=8080
 
 # Run the application
 CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"]
+

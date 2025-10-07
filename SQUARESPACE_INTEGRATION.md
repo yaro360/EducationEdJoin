@@ -376,3 +376,4 @@ Once integrated, your Squarespace site will have:
 ✅ **Brand Consistent** - Matches your site design  
 
 **Your Education Jobs Sourcing Tool will be live on your Squarespace website!** 🚀
+

@@ -68,3 +68,4 @@ if __name__ == "__main__":
         print("\n✅ All tests passed! App should work correctly.")
     else:
         print("\n❌ Some tests failed. Check the issues above.")
+

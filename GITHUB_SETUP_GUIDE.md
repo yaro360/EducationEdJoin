@@ -123,3 +123,4 @@ education-jobs-sourcing-tool/
 ✅ **Releases** - Version your application  
 
 **Your Education Jobs Sourcing Tool is now ready for professional deployment!** 🚀
+

@@ -470,3 +470,4 @@ If you encounter any issues:
 4. Check file permissions for uploads directory
 
 **Ready to deploy? Let's get your job board live!** 🚀
+

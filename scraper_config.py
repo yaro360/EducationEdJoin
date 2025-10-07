@@ -105,3 +105,4 @@ if __name__ == "__main__":
     print(f"Target roles: {', '.join(SCRAPING_CONFIG['target_roles'])}")
     print(f"Request delay: {SCRAPING_CONFIG['request_delay']} seconds")
     print(f"Total potential pages: {SCRAPING_CONFIG['max_pages_per_role'] * len(SCRAPING_CONFIG['target_roles'])}")
+

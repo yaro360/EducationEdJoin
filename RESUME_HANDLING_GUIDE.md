@@ -349,3 +349,4 @@ With resume handling implemented, you'll have:
 ✅ **Admin Notifications** - Email alerts for new candidates  
 
 **Your Education Jobs Sourcing Tool now handles resumes professionally!** 🚀
+
