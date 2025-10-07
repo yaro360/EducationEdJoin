@@ -82,17 +82,11 @@ def save_application(application_data):
 
 @app.route('/')
 def index():
-    """Main dashboard page - Redirect to working route"""
-    # Redirect to the working route that displays jobs
-    return redirect(url_for('educationedjoin2'))
-
-@app.route('/educationedjoin2')
-def educationedjoin2():
-    """Alternative route for education jobs - shows same data as main"""
+    """Main dashboard page - Load jobs directly"""
     jobs = load_jobs()
     
     # Debug: Print job count
-    print(f"DEBUG: Loading {len(jobs)} jobs for educationedjoin2 route")
+    print(f"DEBUG: Loading {len(jobs)} jobs for main route")
     
     # Group jobs by role
     jobs_by_role = {}
@@ -139,9 +133,9 @@ def job_detail(job_index):
     print(f"DEBUG: Job detail - job_index={job_index}, total_jobs={len(jobs)}")
     
     if not jobs:
-        print("DEBUG: No jobs loaded, redirecting to educationedjoin2")
+        print("DEBUG: No jobs loaded, redirecting to main")
         flash('No jobs available. Please try again later.', 'error')
-        return redirect(url_for('educationedjoin2'))
+        return redirect(url_for('index'))
     
     if job_index >= 0 and job_index < len(jobs):
         job = jobs[job_index]
@@ -149,7 +143,7 @@ def job_detail(job_index):
     else:
         print(f"DEBUG: Invalid job_index {job_index} for {len(jobs)} jobs")
         flash('Job not found', 'error')
-        return redirect(url_for('educationedjoin2'))
+        return redirect(url_for('index'))
 
 @app.route('/apply/<int:job_index>', methods=['GET', 'POST'])
 def apply_job(job_index):
@@ -158,14 +152,14 @@ def apply_job(job_index):
     print(f"DEBUG: Apply job - job_index={job_index}, total_jobs={len(jobs)}")
     
     if not jobs:
-        print("DEBUG: No jobs loaded, redirecting to educationedjoin2")
+        print("DEBUG: No jobs loaded, redirecting to main")
         flash('No jobs available. Please try again later.', 'error')
-        return redirect(url_for('educationedjoin2'))
+        return redirect(url_for('index'))
     
     if job_index < 0 or job_index >= len(jobs):
         print(f"DEBUG: Invalid job_index {job_index} for {len(jobs)} jobs")
         flash('Job not found', 'error')
-        return redirect(url_for('educationedjoin2'))
+        return redirect(url_for('index'))
     
     job = jobs[job_index]
     print(f"DEBUG: Found job: {job.get('title', 'No title')}")
