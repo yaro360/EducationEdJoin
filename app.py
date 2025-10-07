@@ -98,6 +98,11 @@ def index():
     
     return render_template('index.html', jobs=jobs, jobs_by_role=jobs_by_role)
 
+@app.route('/educationedjoin2')
+def old_route_redirect():
+    """Old route - redirect to main"""
+    return redirect(url_for('index'))
+
 @app.route('/api/jobs')
 def api_jobs():
     """API endpoint for jobs data"""
