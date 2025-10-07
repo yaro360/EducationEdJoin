@@ -82,7 +82,7 @@ def save_application(application_data):
 
 @app.route('/')
 def index():
-    """Main dashboard page - Load jobs directly"""
+    """Main dashboard page - Load jobs directly (Updated)"""
     jobs = load_jobs()
     
     # Debug: Print job count
