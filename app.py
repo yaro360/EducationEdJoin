@@ -82,9 +82,26 @@ def save_application(application_data):
 
 @app.route('/')
 def index():
-    """Main dashboard page - Redirect to working route temporarily"""
-    # Temporary redirect to working route until main route is fixed
-    return redirect(url_for('educationedjoin2'))
+    """Main dashboard page - Load jobs directly"""
+    try:
+        jobs = load_jobs()
+        
+        # Debug: Print job count
+        print(f"DEBUG: Loading {len(jobs)} jobs for main route")
+        
+        # Group jobs by role
+        jobs_by_role = {}
+        for job in jobs:
+            role = job.get('role', 'Other')
+            if role not in jobs_by_role:
+                jobs_by_role[role] = []
+            jobs_by_role[role].append(job)
+        
+        return render_template('index.html', jobs=jobs, jobs_by_role=jobs_by_role)
+    except Exception as e:
+        print(f"ERROR in main route: {e}")
+        # Fallback to redirect if there's an error
+        return redirect(url_for('educationedjoin2'))
 
 @app.route('/educationedjoin2')
 def educationedjoin2():
