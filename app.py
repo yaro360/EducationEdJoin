@@ -337,6 +337,12 @@ def api_job_candidates(job_url):
     candidates = candidate_matcher.get_top_candidates_for_job(job_url)
     return jsonify(candidates)
 
+@app.route('/api/candidates')
+def api_candidates():
+    """API endpoint to get all candidates"""
+    candidates = candidate_matcher.load_candidates()
+    return jsonify(candidates)
+
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
     """Admin login page"""
