@@ -355,7 +355,46 @@ def admin_login():
         else:
             flash('Invalid password. Please try again.', 'error')
     
-    return render_template('admin_login.html')
+    # Fallback if template doesn't exist
+    try:
+        return render_template('admin_login.html')
+    except:
+        # Simple HTML fallback
+        html = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Admin Login</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        </head>
+        <body>
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Admin Login</h4>
+                            </div>
+                            <div class="card-body">
+                                <form method="POST">
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Admin Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Login</button>
+                                </form>
+                                <div class="mt-3">
+                                    <small class="text-muted">Default password: admin123</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </body>
+        </html>
+        """
+        return html
 
 @app.route('/admin/logout')
 def admin_logout():
@@ -386,7 +425,51 @@ def admin_candidates():
     """Admin page to view all candidates and matches"""
     candidates = candidate_matcher.load_candidates()
     matches = candidate_matcher.load_matches()
-    return render_template('admin_candidates.html', candidates=candidates, matches=matches)
+    
+    # Fallback if template doesn't exist
+    try:
+        return render_template('admin_candidates.html', candidates=candidates, matches=matches)
+    except:
+        # Simple HTML fallback
+        html = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Candidates - Admin Panel</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        </head>
+        <body>
+            <div class="container mt-4">
+                <h2>Candidates ({len(candidates)} total)</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Resume</th></tr>
+                        </thead>
+                        <tbody>
+        """
+        
+        for candidate in candidates:
+            resume_link = f'<a href="/uploads/{candidate.get("resume_filename", "")}" target="_blank">Download</a>' if candidate.get('resume_filename') else 'No resume'
+            html += f"""
+                            <tr>
+                                <td>{candidate.get('name', 'N/A')}</td>
+                                <td>{candidate.get('email', 'N/A')}</td>
+                                <td>{candidate.get('phone', 'N/A')}</td>
+                                <td>{resume_link}</td>
+                            </tr>
+            """
+        
+        html += """
+                        </tbody>
+                    </table>
+                </div>
+                <a href="/admin/applications" class="btn btn-primary">Back to Applications</a>
+            </div>
+        </body>
+        </html>
+        """
+        return html
 
 @app.route('/admin/refresh-jobs', methods=['POST'])
 @admin_required
