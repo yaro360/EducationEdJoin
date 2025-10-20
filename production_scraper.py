@@ -159,7 +159,7 @@ class ProductionEdJoinScraper:
                 position = {
                     "role": role,
                     "title": title,
-                    "url": f"https://www.edjoin.org/Home/DistrictJobPosting/{job_id}",
+                    "url": f"https://www.edjoin.org/Home/JobPosting/{job_id}",
                     "location": city,
                     "district": district,
                     "date_posted": date_posted,
