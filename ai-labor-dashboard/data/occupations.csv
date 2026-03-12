@@ -1,0 +1,51 @@
+occupation,soc_code,exposure_score,bls_growth_projection,sector,exposure_tier
+Computer Programmers,15-1251,75,5.0,Computer & Mathematical,High
+Customer Service Representatives,43-4051,72,-5.0,Office & Administrative Support,High
+Data Entry Keyers,43-9021,67,-18.0,Office & Administrative Support,High
+Software Developers,15-1252,65,25.0,Computer & Mathematical,High
+Financial Analysts,13-2051,62,9.0,Business & Financial Operations,High
+Legal Secretaries,43-6012,60,-17.0,Office & Administrative Support,High
+Accountants and Auditors,13-2011,58,4.0,Business & Financial Operations,High
+Technical Writers,27-3042,56,4.0,Arts Design Entertainment,High
+Insurance Underwriters,13-2053,55,-3.0,Business & Financial Operations,High
+Loan Officers,13-2072,54,3.0,Business & Financial Operations,High
+Paralegals and Legal Assistants,23-2011,52,6.0,Legal,High
+Market Research Analysts,13-1161,50,19.0,Business & Financial Operations,High
+Medical Transcriptionists,31-9094,65,-35.0,Healthcare Support,High
+Bookkeeping Accounting Auditing Clerks,43-3031,63,-14.0,Office & Administrative Support,High
+Tax Preparers,13-2082,58,-15.0,Business & Financial Operations,High
+Credit Analysts,13-2041,55,8.0,Business & Financial Operations,High
+Proofreaders and Copy Markers,43-9081,70,-26.0,Office & Administrative Support,High
+Budget Analysts,13-2031,52,3.0,Business & Financial Operations,High
+Compliance Officers,13-1041,48,6.0,Business & Financial Operations,Medium
+Human Resources Specialists,13-1071,46,8.0,Business & Financial Operations,Medium
+Management Analysts,13-1111,45,10.0,Business & Financial Operations,Medium
+Database Administrators,15-1242,44,9.0,Computer & Mathematical,Medium
+Network and Computer Systems Administrators,15-1244,42,3.0,Computer & Mathematical,Medium
+Graphic Designers,27-1024,40,3.0,Arts Design Entertainment,Medium
+Statisticians,15-2041,38,34.0,Computer & Mathematical,Medium
+Operations Research Analysts,15-2031,45,23.0,Computer & Mathematical,Medium
+Administrative Services Managers,11-3012,35,7.0,Management,Medium
+Financial Managers,11-3031,38,17.0,Management,Medium
+Purchasing Agents,13-1023,42,-8.0,Business & Financial Operations,Medium
+Training and Development Specialists,13-1151,30,8.0,Business & Financial Operations,Medium
+Registered Nurses,29-1141,15,6.0,Healthcare Practitioners,Low
+Physical Therapists,29-1123,10,15.0,Healthcare Practitioners,Low
+Physicians and Surgeons,29-1060,18,3.0,Healthcare Practitioners,Low
+Elementary School Teachers,25-2021,12,1.0,Education Training Library,Low
+Social Workers,21-1029,8,7.0,Community Social Services,Low
+Construction Managers,11-9021,10,8.0,Construction Extraction,Low
+Electricians,47-2111,5,11.0,Construction Extraction,Low
+Plumbers Pipefitters and Steamfitters,47-2152,4,2.0,Construction Extraction,Low
+Carpenters,47-2031,6,2.0,Construction Extraction,Low
+Retail Salespersons,41-2031,22,-2.0,Sales and Related,Low
+Food Service Managers,11-9051,15,10.0,Food Preparation Serving,Low
+Chefs and Head Cooks,35-1011,12,6.0,Food Preparation Serving,Low
+Security Guards,33-9032,14,4.0,Protective Service,Low
+Police and Detectives,33-3050,16,3.0,Protective Service,Low
+Childcare Workers,39-9011,8,2.0,Personal Care Service,Low
+Hairdressers and Cosmetologists,39-5012,6,5.0,Personal Care Service,Low
+Landscape Architects,17-1012,28,5.0,Architecture Engineering,Medium
+Civil Engineers,17-2051,32,6.0,Architecture Engineering,Medium
+Environmental Engineers,17-2081,30,7.0,Architecture Engineering,Medium
+Biomedical Engineers,17-2031,22,10.0,Architecture Engineering,Low
